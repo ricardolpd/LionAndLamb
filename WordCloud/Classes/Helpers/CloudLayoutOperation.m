@@ -215,7 +215,7 @@
                 return;
             }
 
-            CGFloat scale = (word.wordCount.integerValue - minWordCount) / deltaWordCount;
+            CGFloat scale = deltaWordCount == 0.0 ? 0.0 : ((word.wordCount.integerValue - minWordCount) / deltaWordCount);
             word.pointSize = fontMin + (fontStep * floor(scale * (fontRange / fontStep))) + dynamicTypeDelta;
 
             [word determineRandomWordOrientationInContainerWithSize:self.containerSize scale:self.containerScale fontName:self.cloudFont];
