@@ -46,6 +46,7 @@
 
 @synthesize objectUnderTest = _objectUnderTest;
 
+
 - (void)setUp
 {
     [super setUp];

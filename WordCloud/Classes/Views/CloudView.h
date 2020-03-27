@@ -16,6 +16,8 @@
 // Delete
 @property(nonatomic, strong) NSArray *cloudColors;
 
+@property(nonatomic, assign) NSUInteger minimumFontSize;
+
 #ifdef DEBUG
 @property (nonatomic, assign) BOOL debug;
 #endif

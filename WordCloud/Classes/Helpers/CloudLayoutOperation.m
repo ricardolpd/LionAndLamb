@@ -75,10 +75,17 @@
 @synthesize containerScale = _containerScale;
 @synthesize delegate = _delegate;
 @synthesize glyphBoundingRects = _glyphBoundingRects;
+@synthesize minimumFontSize = _minimumFontSize;
 
 #pragma mark - Initialization
 
-- (instancetype)initWithCloudWords:(NSArray *)cloudWords title:(NSString *)title fontName:(NSString *)fontName forContainerWithSize:(CGSize)containerSize scale:(CGFloat)containerScale delegate:(id<CloudLayoutOperationDelegate>)delegate
+- (instancetype)initWithCloudWords:(NSArray *)cloudWords
+                             title:(NSString *)title
+                          fontName:(NSString *)fontName
+              forContainerWithSize:(CGSize)containerSize
+                             scale:(CGFloat)containerScale
+                   minimumFontSize:(NSUInteger)minimumFontSize
+                          delegate:(id<CloudLayoutOperationDelegate>)delegate
 {
     self = [super init];
     if (self)
@@ -99,13 +106,19 @@
         _containerSize = containerSize;
         _containerScale = containerScale;
         _delegate = delegate;
-
+        _minimumFontSize = minimumFontSize;
         _glyphBoundingRects = [[QuadTree alloc] initWithFrame:CGRectMake(0.0, 0.0, containerSize.width, containerSize.height)];
     }
     return self;
 }
 
-- (instancetype)initWithCloudWordsObject:(NSArray *)cloudWords title:(NSString *)title fontName:(NSString *)fontName forContainerWithSize:(CGSize)containerSize scale:(CGFloat)containerScale delegate:(id<CloudLayoutOperationDelegate>)delegate
+- (instancetype)initWithCloudWordsObject:(NSArray *)cloudWords
+                                   title:(NSString *)title
+                                fontName:(NSString *)fontName
+                    forContainerWithSize:(CGSize)containerSize
+                                   scale:(CGFloat)containerScale
+                         minimumFontSize:(NSUInteger)minimumFontSize
+                                delegate:(id<CloudLayoutOperationDelegate>)delegate
 {
     self = [super init];
     if (self)
@@ -117,7 +130,7 @@
         _containerSize = containerSize;
         _containerScale = containerScale;
         _delegate = delegate;
-
+        _minimumFontSize = minimumFontSize;
         _glyphBoundingRects = [[QuadTree alloc] initWithFrame:CGRectMake(0.0, 0.0, containerSize.width, containerSize.height)];
     }
     return self;
@@ -177,7 +190,7 @@
 
     // Start with these values, which will be decreased as needed that all the words may fit the container
 
-    CGFloat fontMin = 12.0;
+    CGFloat fontMin = self.minimumFontSize;
     CGFloat fontMax = fontMin * maxMinRatio;
 
     NSInteger dynamicTypeDelta = [UIFont lal_preferredContentSizeDelta];

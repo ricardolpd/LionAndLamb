@@ -61,6 +61,8 @@
 @end
 
 @interface CloudLayoutOperation : NSOperation
+
+@property(nonatomic, assign) NSUInteger minimumFontSize;
 /**
  Initialize a cloud layout operation
  
@@ -76,7 +78,19 @@
 
  @param delegate The delegate which will receive word layout and progress updates
  */
-- (instancetype)initWithCloudWords:(NSArray *)cloudWords title:(NSString *)title fontName:(NSString *)fontName forContainerWithSize:(CGSize)containerSize scale:(CGFloat)containerScale delegate:(id<CloudLayoutOperationDelegate>)delegate;
-- (instancetype)initWithCloudWordsObject:(NSArray *)cloudWords title:(NSString *)title fontName:(NSString *)fontName forContainerWithSize:(CGSize)containerSize scale:(CGFloat)containerScale delegate:(id<CloudLayoutOperationDelegate>)delegate;
+- (instancetype)initWithCloudWords:(NSArray *)cloudWords
+                             title:(NSString *)title
+                          fontName:(NSString *)fontName
+              forContainerWithSize:(CGSize)containerSize
+                             scale:(CGFloat)containerScale
+                   minimumFontSize:(NSUInteger)minimumFontSize
+                          delegate:(id<CloudLayoutOperationDelegate>)delegate;
+
+- (instancetype)initWithCloudWordsObject:(NSArray *)cloudWords title:(NSString *)title
+                                fontName:(NSString *)fontName
+                    forContainerWithSize:(CGSize)containerSize
+                                   scale:(CGFloat)containerScale
+                         minimumFontSize:(NSUInteger)minimumFontSize
+                                delegate:(id<CloudLayoutOperationDelegate>)delegate;
 
 @end

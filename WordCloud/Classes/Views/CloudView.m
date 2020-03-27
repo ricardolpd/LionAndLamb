@@ -22,6 +22,8 @@
 @synthesize cloudWords = _cloudWords;
 @synthesize cloudTitle = _cloudTitle;
 @synthesize cloudLayoutOperationQueue = _cloudLayoutOperationQueue;
+@synthesize minimumFontSize = _minimumFontSize;
+
 #ifdef DEBUG
 @synthesize debug = _debug;
 #endif
@@ -56,6 +58,7 @@
   self.cloudLayoutOperationQueue = [[NSOperationQueue alloc] init];
   self.cloudLayoutOperationQueue.name = @"Cloud layout operation queue";
   self.cloudLayoutOperationQueue.maxConcurrentOperationCount = 1;
+  self.minimumFontSize = 20;
 }
 
 -(void) rearrangeWords {
@@ -74,6 +77,7 @@
                                                                                                 fontName:self.fontName
                                                                                     forContainerWithSize:CGSizeMake(300, 300)
                                                                                                    scale:[[UIScreen mainScreen] scale]
+                                                                                         minimumFontSize: self.minimumFontSize
                                                                                                 delegate:self];
   [self.cloudLayoutOperationQueue addOperation:newCloudLayoutOperation];
 }
